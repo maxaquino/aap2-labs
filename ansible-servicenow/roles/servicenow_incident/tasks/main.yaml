@@ -1,0 +1,17 @@
+- name: Create incident
+  servicenow.itsm.incident:
+    instance:
+      username: "{{ snow_credentials.username | default(snow_username, true)}}"
+      password: "{{ snow_credentials.password | default(snow_password, true)}}"
+      host: "{{ snow_credentials.host | default(snow_host, true)}}"
+
+    state: new
+    ###caller: some.user
+    short_description: new ticket incident by AAP
+    description: This is a new ticket incident opened by Ansible Automation Platform
+    impact: low
+    urgency: low
+  register: new_incident
+
+- debug:
+    var: new_incident.record

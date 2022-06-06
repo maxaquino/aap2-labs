@@ -1,0 +1,21 @@
+---
+
+- name: Create change request
+  servicenow.itsm.change_request:
+    instance:
+      username: "{{ snow_credentials.username | default(snow_username, true)}}"
+      password: "{{ snow_credentials.password | default(snow_password, true)}}"
+      host: "{{ snow_credentials.host | default(snow_host, true)}}"
+
+    type: standard
+    state: new
+    short_description: "GitOps Change: Update for {{ app_name }} on {{ target_clusters }}"
+    description: "{{ change_request.description }}"
+    priority: "{{ change_request.priority }}"
+
+    other:
+      expected_start: "{{ ansible_date_time.iso8601 }}"
+  register: new_change
+
+- debug:
+    var: new_change.record

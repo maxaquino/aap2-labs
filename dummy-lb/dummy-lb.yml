@@ -1,0 +1,8 @@
+---
+- name: Dummy Load Balancer
+  hosts: all
+ 
+  tasks:
+ 
+  - name: Dummy load balancer
+    shell: echo "This is a dummy playbook for configuring a load balancing"
