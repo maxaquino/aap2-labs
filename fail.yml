@@ -1,0 +1,8 @@
+---
+- hosts: "{{ HOSTS }}"
+  become: yes
+
+  tasks:
+    - name: fail module for test purpose
+      ansible.builtin.fail:
+        msg: The system is failing
