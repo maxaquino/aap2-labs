@@ -4,7 +4,7 @@ aap2-labs
 Ansible Automation Platform 2.x playbooks
 
 
-# ansible-servicenow
+## ansible-servicenow
 This folder contains playbooks to open changes and incidents on ServiceNow.
 It requires:
 - A working ServiceNow demo instance
