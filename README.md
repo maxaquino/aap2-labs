@@ -33,6 +33,9 @@ To allow ServiceNow automation, it needs to create a custom execution environmen
 
 Istructions can be found [here](https://github.com/maxaquino/aap2-labs/blob/main/docs/ee_build_for_snow.md)
 
+
+
+
 Below the content of the directories:
 
 ## ansible-servicenow
