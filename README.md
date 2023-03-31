@@ -3,7 +3,7 @@ aap2-labs
 
 Ansible Automation Platform 2.x playbooks to be used for ansible smart management demo.
 
-Run ** aap2-setup ** first to create credentials, projects, inventories and job templates.
+Run ** aap2-labs-setup ** first to create credentials, projects, inventories and job templates.
 
 Export all variable before running the playbook
 
@@ -19,11 +19,12 @@ export SNOW_USERNAME=<ServiceNow username>
 
 ** Note **
 If the password contains special chars (such as $), use the following to export the variable:
+Pay attention while copying special characters
 ```
-export SNOW_PASSWORD=$( echo ‘<the password goes here>’)
+export SNOW_PASSWORD=$( echo '<the password goes here>')
 
 example:
-export SNOW_PASSWORD=$( echo ‘blabla$L$13’)
+export SNOW_PASSWORD=$( echo 'blabla$L$13')
 ```
 
 ** Note **
