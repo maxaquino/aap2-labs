@@ -37,7 +37,8 @@ Below the content of the directories:
 This folder contains playbooks to open changes and incidents on ServiceNow.
 It requires:
 - A working ServiceNow demo instance
-- An execution environment on Ansible Automation Platform which includes the servicenow collection 
+- A slack channel ansible-bot
+- An execution environment on Ansible Automation Platform which includes the servicenow collection adn the community.general collection (for Slack)
 
 ## dummy-lb
 Just a test playbook which run on localhost

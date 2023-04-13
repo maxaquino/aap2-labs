@@ -3,5 +3,6 @@
 git_repo_url: "https://github.com/maxaquino/aap2-labs.git"
 
 snow_playbook: "ansible-servicenow/servicenow_incident.yml"
+slack_playbook: "slack/slack_notify.yml"
 patch_playbook: "patching/server_patch.yml"
 httpd_playbook: "patching/apache/apache_role_install.yml"

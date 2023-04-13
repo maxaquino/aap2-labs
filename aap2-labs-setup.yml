@@ -121,10 +121,11 @@
         ansible_python_interpreter: !unsafe '{{ ansible_playbook_python }}'
 
   # The following assumes there is the image in the quay registry already otherwise the image must be created 
-  - name: "Add EE-snow execution environment to the controller instance"
+  # The image contains the community and the servicenow collections
+  - name: "Add EE-custom execution environment to the controller instance"
     awx.awx.execution_environment:
-      name: "EE-snow"
-      image: quay.io/maquino/ee_snow:0.0.1
+      name: "EE-custom"
+      image: quay.io/maquino/ee_custom:0.0.1
 
   - name: "Create 'AQ - snow' Job Template"
     awx.awx.job_template:
@@ -134,9 +135,24 @@
       inventory: "AQ - Local"
       project: "AQ - Automated Management"
       playbook: "{{ snow_playbook }}"
-      execution_environment: "EE-snow"
+      execution_environment: "EE-custom"
       credentials:
         - "AQ - SNOW"
+
+  - name: "Create 'AQ - Slack' Job Template"
+    awx.awx.job_template:
+      name: "AQ - Slack"
+      job_type: "run"
+      organization: "Default"
+      inventory: "AQ - Local"
+      project: "AQ - Automated Management"
+      playbook: "{{ slack_playbook }}"
+      execution_environment: "EE-custom"
+      credentials:
+        - "AQ - SLACK"
+      extra_vars:
+        HOSTS: localhost
+        MESSAGE: "default message"
 
   - name: "Create 'AQ - Server patch' Job Template"
     awx.awx.job_template:
