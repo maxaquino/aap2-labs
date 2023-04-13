@@ -1,0 +1,11 @@
+---
+- hosts: "{{ HOSTS }}"
+  become: yes
+
+  tasks:
+  - name: Send notification message via Slack
+    community.general.slack:
+      token: {{ SLACK_TOKEN }}
+      msg: {{ MESSAGE }}
+      channel: #ansible-bot
+    delegate_to: localhost
