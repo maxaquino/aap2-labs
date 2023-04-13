@@ -5,7 +5,7 @@
   tasks:
   - name: Send notification message via Slack
     community.general.slack:
-      token: {{ SLACK_TOKEN }}
+      token: {{ slack_token }}
       msg: {{ MESSAGE }}
       channel: #ansible-bot
     delegate_to: localhost
