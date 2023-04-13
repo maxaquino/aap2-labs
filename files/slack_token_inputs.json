@@ -1,0 +1,12 @@
+{
+  "fields": [
+    {
+      "id": "SLACK_TOKEN",
+      "type": "string",
+      "label": "Slack Token"
+    }
+  ],
+  "required": [
+    "SLACK_TOKEN"
+  ]
+}

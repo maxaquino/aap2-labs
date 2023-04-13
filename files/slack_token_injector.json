@@ -1,0 +1,5 @@
+{
+  "extra_vars": {
+    "slack_token": "{{ SLACK_TOKEN }}"
+  }
+}

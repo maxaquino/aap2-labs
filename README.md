@@ -13,12 +13,13 @@ export CONTROLLER_USERNAME=<ansible controller username>
 export CONTROLLER_PASSWORD=<ansible controller password>
 export CONTROLLER_TOKEN=<ansible controller token>
 export SNOW_HOST=<ServiceNow hostname>
-export SNOW_PASSWORD=<ServiceNow password>
 export SNOW_USERNAME=<ServiceNow username>
+export SNOW_PASSWORD=<ServiceNow password>
+export SLACK_TOKEN=<Slack token>
 ```
 
 **Note** 
-If the password contains special chars (such as $), use the following to export the variable (pay attention while copying special characters):
+If the password or token contains special chars (such as $), use the following to export the variable (pay attention while copying special characters):
 ```
 export SNOW_PASSWORD=$( echo '<the password goes here>')
 

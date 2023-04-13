@@ -24,15 +24,20 @@
       msg: The SNOW_HOST env variable is not defined
     when: not lookup('ansible.builtin.env', 'SNOW_HOST')
 
+  - name: Check SNOW_USERNAME env variable
+    ansible.builtin.fail:
+      msg: The SNOW_USERNAME env variable is not defined
+    when: not lookup('ansible.builtin.env', 'SNOW_USERNAME')
+
   - name: Check SNOW_PASSWORD env variable
     ansible.builtin.fail:
       msg: The SNOW_PASSWORD env variable is not defined
     when: not lookup('ansible.builtin.env', 'SNOW_PASSWORD')
 
-  - name: Check SNOW_USERNAME env variable
+  - name: Check SLACK_TOKEN env variable
     ansible.builtin.fail:
-      msg: The SNOW_USERNAME env variable is not defined
-    when: not lookup('ansible.builtin.env', 'SNOW_USERNAME')
+      msg: The SLACK_TOKEN env variable is not defined
+    when: not lookup('ansible.builtin.env', 'SLACK_TOKEN')
 
 #  - name: Debug controller_token variable
 #    ansible.builtin.debug:
@@ -56,6 +61,24 @@
         SNOW_HOST: "{{ lookup('env', 'SNOW_HOST') }}"
         SNOW_PASSWORD: "{{ lookup('env', 'SNOW_PASSWORD') }}"
         SNOW_USERNAME: "{{ lookup('env', 'SNOW_USERNAME') }}"
+      state: present
+
+  - name: "Create 'AQ - SLACK' Credential Type"
+    awx.awx.credential_type:
+      name: "AQ - SLACK"
+      kind: "cloud"
+      inputs: "{{ lookup('file', 'files/slack_token_inputs.json') }}"
+      injectors: "{{ lookup('file', 'files/slack_token_injector.json') }}"
+      state: present
+
+  - name: "Create 'AQ - SLACK' Credential"
+    awx.awx.credential:
+      name: "AQ - SLACK"
+      organization: "Default"
+      credential_type: "AQ - SLACK"
+      inputs:
+        # It requires the same IDs as per the inputs.json file
+        SLACK_TOKEN: "{{ lookup('env', 'SLACK_TOKEN') }}"
       state: present
 
   - name: "Create 'AQ - Automated Management Project' from this github project"
@@ -96,6 +119,12 @@
       variables:
         ansible_connection: local
         ansible_python_interpreter: !unsafe '{{ ansible_playbook_python }}'
+
+  # The following assumes there is the image in the quay registry already otherwise the image must be created 
+  - name: "Add EE-snow execution environment to the controller instance"
+    awx.awx.execution_environment:
+      name: "EE-snow"
+      image: quay.io/maquino/ee_snow:0.0.1
 
   - name: "Create 'AQ - snow' Job Template"
     awx.awx.job_template:

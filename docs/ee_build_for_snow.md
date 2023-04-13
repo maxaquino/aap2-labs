@@ -1,6 +1,8 @@
 ## Build a new EE with a collection for ServiceNow in Ansible Automation Platform
 
-Follow the below instructions to create a custom Execution Environment for ServiceNow
+Follow the below instructions to create a custom Execution Environment for ServiceNow if not already available on the registry
+
+(run the steps below on the ansible controller node)
 
 ```
 cd; mkdir builder; cd builder
