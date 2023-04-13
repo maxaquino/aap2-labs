@@ -148,6 +148,7 @@
       project: "AQ - Automated Management"
       playbook: "{{ slack_playbook }}"
       execution_environment: "EE-custom"
+      ask_variables_on_launch: true
       credentials:
         - "AQ - SLACK"
       extra_vars:
